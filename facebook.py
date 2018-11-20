@@ -21,9 +21,18 @@ def handle_incoming_messages():
     print("---------------------------------")
     
     msg = data['entry'][0]['messaging'][0]
+    sender_id = msg['sender']['id']     
+    #recipient_id = msg["recipient"]["id"]
 
     message_text = msg['message']['text']   # txt of msg
     nlp_json = msg["message"]["nlp"]['entities'] # nlp parsed dict
+
+    nlp = {} # simplified nlp dict
+        for key in nlp_json.keys():
+            nlp[key] = nlp_json[key][0]["value"]
+            nlp[key+"_confidence"] = nlp_json[key][0]["confidence"]
+            if key == "datetime":
+                nlp["date_grain"] = nlp_json[key][0]["grain"]
 
     reply(sender_id, "your msg was: " + message_text)
     # send NLP dict for debugging

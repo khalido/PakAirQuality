@@ -9,5 +9,11 @@
       "routes": [
         { "src": "/facebook", "dest": "/facebook.py" },
         { "src": "/hello", "dest": "/hello.py" }
-      ]
+      ],
+      "env": {
+        "AIRVISUAL": "@AIRVISUAL",
+        "PAGE_ACCESS_TOKEN": "@PAGE_ACCESS_TOKEN",
+        "FB_CLIENT_TOKEN": "@FB_CLIENT_TOKEN",
+        "VERIFY_TOKEN": "@VERIFY_TOKEN"
+      }
   }
