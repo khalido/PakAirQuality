@@ -28,12 +28,13 @@ def handle_incoming_messages():
     nlp_json = msg["message"]["nlp"]['entities'] # nlp parsed dict
 
     nlp = {} # simplified nlp dict
-        for key in nlp_json.keys():
-            nlp[key] = nlp_json[key][0]["value"]
-            nlp[key+"_confidence"] = nlp_json[key][0]["confidence"]
-            if key == "datetime":
-                nlp["date_grain"] = nlp_json[key][0]["grain"]
+    for key in nlp_json.keys():
+        nlp[key] = nlp_json[key][0]["value"]
+        nlp[key+"_confidence"] = nlp_json[key][0]["confidence"]
+        if key == "datetime":
+            nlp["date_grain"] = nlp_json[key][0]["grain"]
 
+    reply(sender_id, "Test reply of messages")
     reply(sender_id, "your msg was: " + message_text)
     # send NLP dict for debugging
     reply(sender_id, str(nlp))
@@ -43,7 +44,7 @@ def handle_incoming_messages():
 # handle verification challange from fb to authenticate the app
 @app.route('/facebook', methods=['GET'])
 def handle_verification():
-    if (request.args['hub.verify_token'] != VERIFY_TOKEN):
+    if (request.args['hub.verify_token'] == VERIFY_TOKEN):
         print("Verified")
         return request.args['hub.challenge']
     else:
