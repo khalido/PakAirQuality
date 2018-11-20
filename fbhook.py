@@ -11,7 +11,7 @@ VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
 
 
 # handle incoming messages and reply to them
-@app.route('/', methods=['POST'])
+@app.route('/fbhook', methods=['POST'])
 def handle_incoming_messages():
     print("incoming message handling started")
     data = request.json
@@ -30,7 +30,7 @@ def handle_incoming_messages():
     reply(sender_id, str(nlp))
 
 # handle verification challange from fb to authenticate the app
-@app.route('/', methods=['GET'])
+@app.route('/fbhook', methods=['GET'])
 def handle_verification():
     if (request.args['hub.verify_token'] == VERIFY_TOKEN):
         print("Verified")
