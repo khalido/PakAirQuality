@@ -5,7 +5,11 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello, World!'
 
+@app.route('/hello')
+def hello_world():
+    return "<h1>This is the /hello route<h1>" + '<p>Hello, World!</p>' 
+
 
 if __name__ == '__main__':
-    #app.run()
-    app.run(host="0.0.0.0", port="5000")
+    app.run()
+    #app.run(host="0.0.0.0", port="5000")
