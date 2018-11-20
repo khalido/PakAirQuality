@@ -15,6 +15,11 @@ def hello_world():
     
     return message
 
+@app.route('/test')
+def test_msg():
+    message = "This is a test message"
+    return message
+
 # handle incoming messages and reply to them
 @app.route('/fbhook', methods=['POST'])
 def handle_incoming_messages():
