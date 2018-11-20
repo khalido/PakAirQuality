@@ -5,5 +5,9 @@
     ],
     "alias": [
         "PakAirQuality"
+      ],
+      "routes": [
+        { "src": "/facebook", "dest": "/facebook.py" },
+        { "src": "/hello", "dest": "/hello.py" }
       ]
   }
