@@ -15,6 +15,6 @@ def hello_world():
     message = "<h1>This is a test</h1> <p>And this is a paragragh.</p>"
     
     if type(PAGE_ACCESS_TOKEN) == str:
-        message += "<p>Page access token loaded<p>" + PAGE_ACCESS_TOKEN
+        message += "<p>Page access token loaded<p>"
 
     return message + f"<p>Test Secret key is: {TEST_SECRET_KEY}</p> "
