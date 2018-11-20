@@ -1,6 +1,5 @@
 #from http.server import BaseHTTPRequestHandler
-#from cowpy import cow
-
+from cowpy import cow
 from flask import Flask
 import os
 
@@ -40,6 +39,7 @@ def handle_verification():
         print("Wrong token")
         return "Error, wrong validation token"
 
+
 def is_typing(user_id):
     """sends a is typing msg to user_id"""
     data = {
@@ -48,9 +48,6 @@ def is_typing(user_id):
     }
     post_url = "https://graph.facebook.com/v2.6/me/messages?access_token=" + PAGE_ACCESS_TOKEN
     resp = requests.post(post_url, json=data)
-
-
-
 
 
 def reply(user_id, msg=None, image_url=None):
@@ -69,7 +66,7 @@ def reply(user_id, msg=None, image_url=None):
     resp = requests.post(post_url, json=data)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
     #app.run(debug=True, port=5000)
     #app.run(host="0.0.0.0", port="80")
     
