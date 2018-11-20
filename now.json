@@ -11,9 +11,9 @@
         { "src": "/hello", "dest": "/hello.py" }
       ],
       "env": {
-        "AIRVISUAL": "@AIRVISUAL",
-        "PAGE_ACCESS_TOKEN": "@PAGE_ACCESS_TOKEN",
-        "FB_CLIENT_TOKEN": "@FB_CLIENT_TOKEN",
-        "VERIFY_TOKEN": "@VERIFY_TOKEN"
+        "AIRVISUAL": "@airvisual",
+        "PAGE_ACCESS_TOKEN": "@page_access_token",
+        "FB_CLIENT_TOKEN": "@fb_client_token",
+        "VERIFY_TOKEN": "@verify_token"
       }
   }
