@@ -1,5 +1,3 @@
-#from http.server import BaseHTTPRequestHandler
-from cowpy import cow
 from flask import Flask, request
 import os
 import requests
@@ -9,10 +7,11 @@ app = Flask(__name__)
 PAGE_ACCESS_TOKEN = os.getenv("PAGE_ACCESS_TOKEN")
 FB_CLIENT_TOKEN = os.getenv("FB_CLIENT_TOKEN")
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
+TEST_SECRET_KEY = os.getenv("TEST_SECRET_KEY")
 
 
 # handle incoming messages and reply to them
-@app.route('/', methods=['POST'])
+@app.route('/facebook', methods=['POST'])
 def handle_incoming_messages():
     print("incoming message handling started")
     data = request.json
@@ -30,10 +29,12 @@ def handle_incoming_messages():
     # send NLP dict for debugging
     reply(sender_id, str(nlp))
 
+    return "ok", 200
+
 # handle verification challange from fb to authenticate the app
-@app.route('/', methods=['GET'])
+@app.route('/facebook', methods=['GET'])
 def handle_verification():
-    if (request.args['hub.verify_token'] == VERIFY_TOKEN):
+    if (request.args['hub.verify_token'] != VERIFY_TOKEN):
         print("Verified")
         return request.args['hub.challenge']
     else:
@@ -70,5 +71,3 @@ if __name__ == '__main__':
     app.run()
     #app.run(debug=True, port=5000)
     #app.run(host="0.0.0.0", port="80")
-    
-
