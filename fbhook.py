@@ -2,6 +2,7 @@
 from cowpy import cow
 from flask import Flask
 import os
+import requests
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
 
 
 # handle incoming messages and reply to them
-@app.route('/fbhook', methods=['POST'])
+@app.route('/', methods=['POST'])
 def handle_incoming_messages():
     print("incoming message handling started")
     data = request.json
@@ -30,7 +31,7 @@ def handle_incoming_messages():
     reply(sender_id, str(nlp))
 
 # handle verification challange from fb to authenticate the app
-@app.route('/fbhook', methods=['GET'])
+@app.route('/', methods=['GET'])
 def handle_verification():
     if (request.args['hub.verify_token'] == VERIFY_TOKEN):
         print("Verified")
@@ -66,19 +67,8 @@ def reply(user_id, msg=None, image_url=None):
     resp = requests.post(post_url, json=data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
     #app.run(debug=True, port=5000)
     #app.run(host="0.0.0.0", port="80")
     
-    
-"""
-class handler(BaseHTTPRequestHandler):
 
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type','text/plain')
-        self.end_headers()
-        message = cow.Cowacter().milk('Hello from Python on Now Lambda!1111111')
-        self.wfile.write(message.encode())
-        return
-"""
