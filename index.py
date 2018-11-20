@@ -55,8 +55,6 @@ def is_typing(user_id):
 
 
 
-
-
 def reply(user_id, msg=None, image_url=None):
     """takes in user_id and a msg and sends it
     takes in either a msg or image_url, not both"""
@@ -73,7 +71,7 @@ def reply(user_id, msg=None, image_url=None):
     resp = requests.post(post_url, json=data)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
     #app.run(debug=True, port=5000)
     #app.run(host="0.0.0.0", port="80")
     
